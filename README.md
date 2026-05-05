@@ -65,14 +65,14 @@ taskflow/
 - `RABBITMQ_*`
 - `POSTGRES_*`
 
-Backend-значения по умолчанию находятся в [backend/.env.example](/C:/Users/DivvOne/Documents/New%20project%204/backend/.env.example).
+Backend-значения по умолчанию находятся в [backend/.env.example](/backend/.env.example).
 
 ## Backend
 
 - Backend по умолчанию работает с PostgreSQL.
 - Sanctum уже установлен и используется для токеновой авторизации.
 - Установлена библиотека для RabbitMQ: `php-amqplib/php-amqplib`.
-- Основные API-маршруты находятся в [backend/routes/api.php](/C:/Users/DivvOne/Documents/New%20project%204/backend/routes/api.php).
+- Основные API-маршруты находятся в [backend/routes/api.php](/backend/routes/api.php).
 - Подготовлены модели и миграции для MVP-схемы.
 - Уже реализованы:
     - `register`
@@ -93,7 +93,7 @@ Go-сервис:
 - отдает `GET /health` на порту `8081`
 - поддерживает graceful shutdown
 
-Точка входа: [notification-service/cmd/notification-service/main.go](/C:/Users/DivvOne/Documents/New%20project%204/notification-service/cmd/notification-service/main.go)
+Точка входа: [notification-service/cmd/notification-service/main.go](/notification-service/cmd/notification-service/main.go)
 
 ## Frontend
 
@@ -107,12 +107,12 @@ Frontend сейчас включает:
 
 Основные файлы:
 
-- [frontend/src/App.vue](/C:/Users/DivvOne/Documents/New%20project%204/frontend/src/App.vue)
-- [frontend/src/router/index.js](/C:/Users/DivvOne/Documents/New%20project%204/frontend/src/router/index.js)
-- [frontend/src/stores/auth.js](/C:/Users/DivvOne/Documents/New%20project%204/frontend/src/stores/auth.js)
-- [frontend/src/views/ProjectsView.vue](/C:/Users/DivvOne/Documents/New%20project%204/frontend/src/views/ProjectsView.vue)
-- [frontend/src/views/TasksView.vue](/C:/Users/DivvOne/Documents/New%20project%204/frontend/src/views/TasksView.vue)
-- [frontend/src/style.css](/C:/Users/DivvOne/Documents/New%20project%204/frontend/src/style.css)
+- [frontend/src/App.vue](/frontend/src/App.vue)
+- [frontend/src/router/index.js](/frontend/src/router/index.js)
+- [frontend/src/stores/auth.js](/frontend/src/stores/auth.js)
+- [frontend/src/views/ProjectsView.vue](/frontend/src/views/ProjectsView.vue)
+- [frontend/src/views/TasksView.vue](/frontend/src/views/TasksView.vue)
+- [frontend/src/style.css](/frontend/src/style.css)
 
 ## Что можно делать сейчас
 
