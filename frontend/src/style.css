@@ -1,0 +1,266 @@
+:root {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #f3efe6;
+  background:
+    radial-gradient(circle at top left, rgba(255, 183, 77, 0.18), transparent 30%),
+    radial-gradient(circle at top right, rgba(17, 138, 178, 0.2), transparent 28%),
+    linear-gradient(135deg, #07131f 0%, #0f2135 48%, #102c46 100%);
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  min-height: 100vh;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px 32px;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(3, 11, 20, 0.45);
+  backdrop-filter: blur(16px);
+}
+
+.sidebar h1,
+.page h2 {
+  margin: 0;
+  font-size: clamp(2rem, 2.8vw, 3.4rem);
+  line-height: 1;
+}
+
+.sidebar-copy {
+  margin-top: 18px;
+  color: rgba(243, 239, 230, 0.72);
+  max-width: 22rem;
+}
+
+.sidebar-nav {
+  display: grid;
+  gap: 10px;
+}
+
+.sidebar-nav a {
+  padding: 14px 16px;
+  border-radius: 16px;
+  color: rgba(243, 239, 230, 0.86);
+  background: rgba(255, 255, 255, 0.03);
+  transition: transform 0.18s ease, background 0.18s ease;
+}
+
+.sidebar-nav a.router-link-active,
+.sidebar-nav a:hover {
+  background: rgba(255, 183, 77, 0.16);
+  transform: translateX(6px);
+}
+
+.nav-button {
+  padding: 14px 16px;
+  border: 0;
+  border-radius: 16px;
+  color: rgba(243, 239, 230, 0.86);
+  background: rgba(255, 255, 255, 0.03);
+  text-align: left;
+  cursor: pointer;
+}
+
+.content-panel {
+  padding: 32px;
+}
+
+.page {
+  display: grid;
+  gap: 24px;
+}
+
+.page-head,
+.panel-head,
+.table-head,
+.table-row,
+.filters,
+.list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+  color: #ffb74d;
+}
+
+.badge,
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff4d9;
+  font-size: 0.85rem;
+}
+
+.stats-grid,
+.content-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.stats-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.content-grid {
+  grid-template-columns: 1.3fr 1fr;
+}
+
+.stat-card,
+.panel {
+  padding: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  background: rgba(7, 19, 31, 0.58);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+}
+
+.stat-card span,
+.panel-head span,
+.list-item p,
+.table-row p {
+  color: rgba(243, 239, 230, 0.65);
+}
+
+.stat-card strong {
+  display: block;
+  margin-top: 16px;
+  font-size: 2rem;
+}
+
+.accent-panel {
+  background: linear-gradient(180deg, rgba(255, 183, 77, 0.14), rgba(17, 138, 178, 0.14));
+}
+
+.list,
+.feature-list,
+.form-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.list-item,
+.table-row {
+  padding: 16px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.table-head {
+  padding-bottom: 12px;
+  color: rgba(243, 239, 230, 0.65);
+}
+
+.filters {
+  flex-wrap: wrap;
+}
+
+.input {
+  width: 100%;
+  min-width: 180px;
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  background: rgba(3, 11, 20, 0.55);
+  color: #f3efe6;
+}
+
+.primary-button,
+.ghost-button {
+  border: 0;
+  border-radius: 16px;
+  padding: 14px 18px;
+  cursor: pointer;
+}
+
+.primary-button {
+  background: linear-gradient(135deg, #ffb74d, #ff8a65);
+  color: #102030;
+  font-weight: 700;
+}
+
+.ghost-button {
+  background: rgba(255, 255, 255, 0.08);
+  color: #f3efe6;
+}
+
+.auth-page {
+  min-height: calc(100vh - 64px);
+  align-items: center;
+}
+
+.form-panel {
+  max-width: 520px;
+}
+
+.form-error {
+  color: #ffb4a2;
+  margin: 0;
+}
+
+.action-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 980px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    gap: 24px;
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .stats-grid,
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+}
