@@ -1,19 +1,19 @@
 # TaskFlow
 
-TaskFlow is a pet project for task management, project collaboration, and asynchronous notifications. The repository is prepared as a monorepo with Laravel for the API, Vue 3 for the frontend, Go for the notification microservice, and Docker Compose for local orchestration.
+TaskFlow — это pet-project для управления задачами, проектами и асинхронными уведомлениями. Репозиторий организован как монорепозиторий: Laravel отвечает за API, Vue 3 за frontend, Go за сервис уведомлений, а Docker Compose за локальную оркестрацию.
 
-## Stack
+## Стек
 
-- Laravel 10 + Sanctum-ready API foundation
+- Laravel 10 + Sanctum для API и авторизации
 - Vue 3 + Vite + Vue Router + Pinia + Axios
-- Go notification service with RabbitMQ consumer and healthcheck
+- Go-сервис уведомлений с consumer для RabbitMQ и healthcheck endpoint
 - PostgreSQL 16
 - Redis 7
-- RabbitMQ 3 with Management UI
-- Nginx reverse proxy
+- RabbitMQ 3 с Management UI
+- Nginx как reverse proxy
 - Docker Compose
 
-## Repository structure
+## Структура репозитория
 
 ```text
 taskflow/
@@ -28,28 +28,35 @@ taskflow/
 └── README.md
 ```
 
-## What is already prepared
+## Что уже подготовлено
 
-- Real Laravel backend scaffold in `backend/`
-- Real Vue 3 frontend scaffold in `frontend/`
-- PostgreSQL-oriented environment defaults
-- Domain schema for users, projects, tasks, comments, and notifications
-- RabbitMQ config for Laravel and a working Go consumer skeleton
-- Basic SPA layout with routes for dashboard, projects, tasks, notifications, login, and registration
-- Dockerfiles and `docker-compose.yml` to run the stack locally
+- Реальный Laravel backend в `backend/`
+- Реальный Vue 3 frontend в `frontend/`
+- Конфигурация по умолчанию под PostgreSQL
+- Доменная схема для пользователей, проектов, задач, комментариев и уведомлений
+- Конфигурация RabbitMQ для Laravel и рабочий каркас Go consumer-сервиса
+- Базовый SPA-интерфейс с маршрутами dashboard, projects, tasks, notifications, login и register
+- Dockerfiles и `docker-compose.yml` для локального запуска
+- Рабочая регистрация, авторизация, CRUD проектов и CRUD задач
 
-## Local startup
+## Локальный запуск
 
-1. Copy the root environment file.
-2. Run `docker compose up --build`.
-3. Open [http://localhost](http://localhost).
+1. Скопируй корневой env-файл.
+2. Выполни `docker compose up --build`.
+3. Открой приложение.
 
-Extra endpoints:
+Основной адрес:
 
-- API health: [http://localhost/api/health](http://localhost/api/health)
+- [http://localhost:8080](http://localhost:8080)
+
+Дополнительные адреса:
+
+- Проверка API: [http://localhost:8080/api/health](http://localhost:8080/api/health)
+- Сводка dashboard из backend: [http://localhost:8080/api/dashboard/summary](http://localhost:8080/api/dashboard/summary)
 - RabbitMQ UI: [http://localhost:15672](http://localhost:15672)
+- Vite dev server frontend: [http://localhost:5173](http://localhost:5173)
 
-## Important environment values
+## Важные переменные окружения
 
 - `APP_URL`
 - `FRONTEND_URL`
@@ -58,49 +65,73 @@ Extra endpoints:
 - `RABBITMQ_*`
 - `POSTGRES_*`
 
-Backend-specific defaults live in [backend/.env.example](/C:/Users/DivvOne/Documents/New%20project%204/backend/.env.example).
+Backend-значения по умолчанию находятся в [backend/.env.example](/C:/Users/DivvOne/Documents/New%20project%204/backend/.env.example).
 
-## Backend notes
+## Backend
 
-- The backend now targets PostgreSQL by default.
-- Sanctum is installed.
-- RabbitMQ publishing library `php-amqplib/php-amqplib` is installed.
-- API starter routes are available in [backend/routes/api.php](/C:/Users/DivvOne/Documents/New%20project%204/backend/routes/api.php).
-- Domain models and migrations are prepared for the MVP schema.
+- Backend по умолчанию работает с PostgreSQL.
+- Sanctum уже установлен и используется для токеновой авторизации.
+- Установлена библиотека для RabbitMQ: `php-amqplib/php-amqplib`.
+- Основные API-маршруты находятся в [backend/routes/api.php](/C:/Users/DivvOne/Documents/New%20project%204/backend/routes/api.php).
+- Подготовлены модели и миграции для MVP-схемы.
+- Уже реализованы:
+    - `register`
+    - `login`
+    - `logout`
+    - `me`
+    - CRUD проектов
+    - CRUD задач
 
-## Go notification service
+## Go-сервис уведомлений
 
-The Go service:
+Go-сервис:
 
-- connects to RabbitMQ
-- listens to the `notifications` queue
-- validates incoming payloads
-- stores notifications in PostgreSQL
-- exposes `GET /health` on port `8081`
-- supports graceful shutdown
+- подключается к RabbitMQ
+- слушает очередь `notifications`
+- валидирует входящий payload
+- сохраняет уведомления в PostgreSQL
+- отдает `GET /health` на порту `8081`
+- поддерживает graceful shutdown
 
-Main entrypoint: [notification-service/cmd/notification-service/main.go](/C:/Users/DivvOne/Documents/New%20project%204/notification-service/cmd/notification-service/main.go)
+Точка входа: [notification-service/cmd/notification-service/main.go](/C:/Users/DivvOne/Documents/New%20project%204/notification-service/cmd/notification-service/main.go)
 
-## Frontend notes
+## Frontend
 
-The frontend currently includes:
+Frontend сейчас включает:
 
-- app shell and dashboard starter
-- Vue Router navigation
-- pages for projects, tasks, notifications, login, and registration
-- styling that is ready to evolve into the real product UI
+- общий app shell
+- dashboard с живым запросом в Laravel API
+- страницы для проектов, задач, уведомлений, входа и регистрации
+- подключенную авторизацию
+- формы создания, редактирования и удаления проектов и задач
 
-Main files:
+Основные файлы:
 
 - [frontend/src/App.vue](/C:/Users/DivvOne/Documents/New%20project%204/frontend/src/App.vue)
 - [frontend/src/router/index.js](/C:/Users/DivvOne/Documents/New%20project%204/frontend/src/router/index.js)
+- [frontend/src/stores/auth.js](/C:/Users/DivvOne/Documents/New%20project%204/frontend/src/stores/auth.js)
+- [frontend/src/views/ProjectsView.vue](/C:/Users/DivvOne/Documents/New%20project%204/frontend/src/views/ProjectsView.vue)
+- [frontend/src/views/TasksView.vue](/C:/Users/DivvOne/Documents/New%20project%204/frontend/src/views/TasksView.vue)
 - [frontend/src/style.css](/C:/Users/DivvOne/Documents/New%20project%204/frontend/src/style.css)
 
-## Suggested next steps
+## Что можно делать сейчас
 
-1. Implement auth endpoints: register, login, logout, me.
-2. Add policies and permissions for Admin, Manager, and User.
-3. Build project, task, and comment CRUD controllers with request validation.
-4. Publish RabbitMQ events on task assignment, status changes, and comments.
-5. Replace frontend mock data with Axios and Pinia stores.
-6. Add Laravel feature tests and Go unit tests.
+- зарегистрироваться
+- войти в систему
+- выйти из системы
+- просматривать dashboard
+- создавать проекты
+- редактировать проекты
+- удалять проекты
+- создавать задачи
+- редактировать задачи
+- удалять задачи
+
+## Следующие шаги
+
+1. Добавить комментарии к задачам.
+2. Реализовать роли и права доступа для `Admin`, `Manager` и `User`.
+3. Добавить отдельные действия смены статуса задачи.
+4. Публиковать события в RabbitMQ при создании и обновлении задач.
+5. Подключить реальные уведомления на frontend.
+6. Добавить feature-тесты Laravel и unit-тесты Go.
